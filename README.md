@@ -6,11 +6,14 @@ This project addresses the problem of predicting gun homicide rates in the Unite
 ## Dataset
 The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The dataset includes features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI's for each U.S. state.
 
-### Structure: The dataset contains 18 determining features (after preprocessing) representing various social and economic factors, with the target variable being the gun homicide rate per 100,000 population for each state.
+### Structure
+The dataset contains 18 determining features (after preprocessing) representing various social and economic factors, with the target variable being the gun homicide rate per 100,000 population for each state.
 
-### Biases: The dataset may contain biases related to data collection and reporting practices. For example, gun homicide data may be underreported in some areas, leading to potential inaccuracies.  Additionally, the homicide rate per 100k varies widely (example: 1.28 in New Hampshire vs. 20.99 in D.C.), suggesting potential skewness. This could indicate imbalance if modeling homicide rates.
+### Biases
+The dataset may contain biases related to data collection and reporting practices. For example, gun homicide data may be underreported in some areas, leading to potential inaccuracies.  Additionally, the homicide rate per 100k varies widely (example: 1.28 in New Hampshire vs. 20.99 in D.C.), suggesting potential skewness. This could indicate imbalance if modeling homicide rates.
 
-### Preprocessing: The following preprocessing steps were performed:
+### Preprocessing
+The following preprocessing steps were performed:
 
 -Removed irrelevant columns (flags, extraneous state codes, margin of error values, and ethnicity composition)
 -Rows with unreliable homicide rates were manually calculated using Execl Formulae
@@ -18,7 +21,7 @@ The dataset used in this project combines data both from the CDC: gun homicides 
 ### Baseline Performance
 Three models were trained and tuned to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) and R-squared (R^2) on a test set (20% of the data). The results are summarized below:
 
-
+![screenshot](images/capbase.png)
 
 ## Experiments
 ### Scaling Features
