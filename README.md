@@ -54,4 +54,6 @@ Synthetic noise (a random continuous and a random discrete categorical feature) 
 
 ![screenshot](images/capresult.PNG)
 ## Recommended Model
-Based on the experiment results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernel on MinMax scaled features. This model achieved the lowest Test MSE (5.693) compared to other model variants and effectively captured the general pattern in the data without excessive overfitting. The dataset appears to have a linear relationship between features and the target variable, making this model suitable.
+Based on the experiment results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernel on MinMax scaled features. This model achieved the lowest Test MSE (5.34) compared to other model variants and effectively captured the general pattern in the data without excessive overfitting. This suggests that the dataset appears to have a linear relationship between features and the target variable. 
+
+
