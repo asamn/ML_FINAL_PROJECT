@@ -4,10 +4,12 @@
 This project addresses the problem of predicting gun homicide rates in the United States using socioeconomic and demographic factors represented by the Social Vulnerability Index (SVI). Understanding the factors that contribute to gun violence is crucial for developing effective prevention strategies and resource allocation to mitigate this public health crisis. This project aims to explore the relationship between social vulnerability and gun homicide rates and identify potential predictive features for future analysis and intervention.
 
 ## Dataset
-The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The dataset includes features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI's for each U.S. state.
+The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The SVI dataset includes features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI's for U.S counties.
+
+![screenshot](images/capdata.PNG)
 
 ### Structure
-The dataset contains 18 determining features (after preprocessing) representing various social and economic factors, with the target variable being the gun homicide rate per 100,000 population for each state.
+The dataset contains 18 determining features after preprocessing representing various social and economic factors, with the target variable being the gun homicide rate per 100,000 population for each state. Features represent estimated percentages of populations falling under a certain socioeconomic criteria. Documentation of these features is provided here: https://www.atsdr.cdc.gov/place-health/media/pdfs/2024/10/SVI2022Documentation.pdf
 
 ### Biases
 The dataset may contain biases related to data collection and reporting practices. For example, gun homicide data may be underreported in some areas, leading to potential inaccuracies.  Additionally, the homicide rate per 100k varies widely (example: 1.28 in New Hampshire vs. 20.99 in D.C.), suggesting potential skewness. This could indicate imbalance if modeling homicide rates.
