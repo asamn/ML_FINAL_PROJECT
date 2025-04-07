@@ -15,9 +15,16 @@ The dataset may contain biases related to data collection and reporting practice
 ### Preprocessing
 The following preprocessing steps were performed:
 
--Removed irrelevant columns (flags, extraneous state codes, margin of error values, and ethnicity composition)
+-Group county data by states, and performed aggregation via averaging
+
+-Removed irrelevant columns (flags, extraneous state codes, margin of error values)
+
 -Rows with unreliable homicide rates were manually calculated using Execl Formulae
+
+-Only chose features that represented percentage of population rather than raw amounts
+
 -Features starting with "RPL_" were separated as they represent different social vulnerability rankings scores (overall and for individual themes)
+
 ### Baseline Performance
 Three models were trained and tuned to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) and R-squared (R^2) on a test set (20% of the data). The results are summarized below:
 
@@ -34,24 +41,13 @@ Polynomial features of 2nd and 3rd order were generated. For 2nd order polynomia
 PCA was applied to reduce dimensionality, capturing 90% of variance with 6 components. This lowered MSE for SVR and Linear Regression, but raised it for XGBoost.
 
 ### Preprocessing
-Two variants of the dataset were proposed - one containing the features used to calculate the final SVI values, and the other containing only the SVI values themselves. It was found that the first dataset variant,
+Two variants of the dataset were proposed - one containing the features used to calculate the final SVI values, and the other containing only the SVI values themselves (features with the "_RPF" flags). It was found that the first dataset variant,
 the one with the features, worked best for the models.
 
 ### Noisy Indicators
-Synthetic noise (a random continuous and a random discrete categorical feature) was introduced. This experiment assessed the robustness of the models to irrelevant features. The impact on model performance varied, highlighting the importance of feature selection in real-world scenarios.
+Synthetic noise (a random continuous and a random discrete categorical feature) was introduced. This experiment assessed the robustness of the models to irrelevant features. The impact on model performance varied.
 
 ## Results and Discussion
-Experiment	Model Variant	Train MSE	Test MSE	R^2
-BASE	Linear Reg.	0.00000000062	15.81	0.119
-BASE	SVR	0.969	7.388	0.589
-BASE	XGBoost	0.811	5.490	0.694
-SCALED	Linear Reg.	0.00000000062	15.81	0.119
-SCALED	SVR	0.951	5.693	0.684
-SCALED	XGBoost	0.808	5.537	0.691
-...	...	...	...	...
-Lowest Train MSE: Linear Regression (across all experiments)
-Highest Train MSE: SVR (across all experiments)
-Lowest Test MSE: SVR with scaled features
-Highest Test MSE: Linear regression (across all experiments)
+![screenshot](images/capresult.PNG)
 ## Recommended Model
-Based on the experiments and results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernel on scaled features. This model achieved the lowest Test MSE (5.693) compared to other model variants and effectively captured the general pattern in the data without excessive overfitting. The dataset appears to have a linear relationship between features and the target variable, making this model suitable.
+Based on the experiment results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernel on MinMax scaled features. This model achieved the lowest Test MSE (5.693) compared to other model variants and effectively captured the general pattern in the data without excessive overfitting. The dataset appears to have a linear relationship between features and the target variable, making this model suitable.
