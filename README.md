@@ -21,7 +21,7 @@ The following preprocessing steps were performed:
 ### Baseline Performance
 Three models were trained and tuned to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) and R-squared (R^2) on a test set (20% of the data). The results are summarized below:
 
-![screenshot](images/capbase.png)
+![screenshot](images/capbase.PNG)
 
 ## Experiments
 ### Scaling Features
