@@ -38,7 +38,7 @@ Three models were trained and tuned using GridSearchCV to establish a baseline p
 
 ## Experiments
 ### Scaling Features
-Features were scaled using MinMaxScaler. This reduced training times for all models, especially for XGBoost. MSE for SVR improved, and it chose a linear kernel instead of a polynomial one.
+Features were scaled using MinMaxScaler. This reduced training times for all models, especially for XGBoost. 
 
 ### Adding Features
 Polynomial features of 2nd and 3rd order were generated. For 2nd order polynomials, XGBoost performed the best. However, using 3rd order polynomials improved SVR's testing error, making it the best model. XGBoost showed signs of overfitting in this scenario.
