@@ -4,7 +4,7 @@
 This project addresses the problem of predicting gun homicide rates in the United States using socioeconomic and demographic factors represented by the Social Vulnerability Index (SVI). Understanding the factors that contribute to gun violence is crucial for developing effective prevention strategies and resource allocation to mitigate this public health crisis. This project aims to explore the relationship between social vulnerability and gun homicide rates and identify potential predictive features for future analysis and intervention.
 
 ## Dataset
-The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The SVI dataset includes features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI's for U.S counties.
+The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The SVI dataset includes indicating features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI scores for four themes. 
 
 ![screenshot](images/capdata.PNG)
 
