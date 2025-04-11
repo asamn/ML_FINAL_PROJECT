@@ -57,14 +57,14 @@ PCA was applied to reduce dimensionality, set to capture 90% of variance with 6 
 Two variants of the dataset were proposed - one containing the features used to calculate the final SVI values, and the other containing only the SVI values themselves (features with the "RPF" flags). It was found that the first dataset variant, the one with the indicating features, worked best for the models. Including the SVI index scores in the dataset introduces multicolinearity.
 
 ### Noisy Indicators
-Synthetic noise (a random continuous and a random discrete categorical feature) was introduced to the dataset, assessing the robustness of the models to irrelevant features. It was found that SVR with a linear kernal achieved the lowest MSE out of all the experiments. Introducing noisy data appears to worsen the MSE of XGBoost by inducing overfitting, as seen by the significantly lowered training error but heighted testing error. On the otherhand, linear SVR increased in training error but lowered in in testing error, indicating a reduction in overfitting.
+Synthetic noise (a random continuous and a random discrete categorical feature) was introduced to the dataset, assessing the robustness of the models to irrelevant features. It was found that SVR with a linear kernel achieved the lowest MSE out of all the experiments. Introducing noisy data appears to worsen the MSE of XGBoost by inducing overfitting, as seen by the significantly lowered training error but heighted testing error. On the otherhand, linear SVR increased in training error but lowered in in testing error, indicating a reduction in overfitting.
 
 ## Results and Discussion
 ![screenshot](images/captimes.PNG)
 
 ![screenshot](images/capresult.PNG)
 
-It appears that SVR with a linear kernal on noisy features achieved the lowest testing MSE compared to other model variants. This implies that noisy data may reduce overfitting for linear based models, but increase overfitting in tree-based boosting models like XGBoost - especially in the case of small datasets such as the one used in this project. Adding noise can artificially increase the diversity of the data, providing the model with more variations to learn from and potentially improving generalization.
+It appears that SVR with a linear kernel on noisy features achieved the lowest testing MSE compared to other model variants. This implies that noisy data may reduce overfitting for linear based models, but increase overfitting in tree-based boosting models like XGBoost - especially in the case of small datasets such as the one used in this project. Adding noise can artificially increase the diversity of the data, providing the model with more variations to learn from and potentially improving generalization.
 
 If more time, and patience, were available, a more extensive GridSearch over a wider range of values could potentially yield better results, especially for XGBoost which tended to overfit the relatively small data. Using techniques like RandomizedSearchCV or Bayesian Optimization would alternatively allow for a more efficient exploration of the hyperparameter space.
 
@@ -73,5 +73,5 @@ Also, due to having only 50 samples (50 states) in the dataset, it may be better
 Experimenting with other models, particularly Ensemble Methods could potentially improve overall accuracy and stability.
 
 ## Recommended Model
-Based on the experiment results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernal on noisy and scaled features achieved the lowest MSE compared to other model variants - therefore, this is my recomended model for the given dataset. This model effectively captured the general pattern within the dataset without excessive overfitting, leading to improved predictive performance.
+Based on the experiment results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernel on noisy and scaled features achieved the lowest MSE compared to other model variants - therefore, this is my recomended model for the given dataset. This model effectively captured the general pattern within the dataset without excessive overfitting, leading to improved predictive performance.
 
