@@ -4,7 +4,7 @@
 This project addresses the problem of predicting gun homicide rates in the United States using socioeconomic and demographic factors represented by the Social Vulnerability Index (SVI). Understanding the factors that contribute to gun violence is crucial for developing effective prevention strategies and resource allocation to mitigate this public health crisis. This project aims to explore the relationship between social vulnerability and gun homicide rates and identify potential predictive features for future analysis and intervention.
 
 ## Dataset
-The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The SVI dataset includes indicating features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI scores for four themes. 
+The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The SVI dataset includes indicating features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI scores for four themes (represented by the "RPL" flags), based on the indicating features. 
 
 ![screenshot](images/capdata.PNG)
 
@@ -26,6 +26,8 @@ The following preprocessing steps were performed:
 -Only chose features that represented percentage of population rather than raw amounts
 
 -Features starting with "RPL_" were separated as they represent different social vulnerability rankings scores (overall and for individual themes)
+
+-To elimiate the presence of multicolinearity, only the indicating features will be considered for for the models - hence, I omit the social vulerability ranking scores. 
 
 ### Baseline Performance
 Three models were trained and tuned to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) and R-squared (R^2) on a test set (20% of the data). The results are summarized below:
