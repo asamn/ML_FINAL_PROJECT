@@ -4,12 +4,12 @@
 This project addresses the problem of predicting gun homicide rates in the United States using socioeconomic and demographic factors represented by the Social Vulnerability Index (SVI). Understanding the factors that contribute to gun violence is crucial for developing effective prevention strategies and resource allocation to mitigate this public health crisis. This project aims to explore the relationship between social vulnerability and gun homicide rates and identify potential predictive features for future analysis and intervention.
 
 ## Dataset
-The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The SVI dataset includes indicating features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI scores for four themes (represented by the "RPL" flags), based on the indicating features. 
+The dataset used in this project combines data both from the CDC: gun homicides per 100k capita data and SVI data. The SVI dataset includes indicating features related to socioeconomic status, household characteristics, racial and ethnic minority status, and calculated SVI scores for four themes (represented by the "RPL" flags), based on the indicating features. The SVI dataset reports on a county-level, while gun-homicide is on a state-level. Preporcessing was done to aggregate and group SVI county data into states. All data focuses on the year 2022. 
 
 ![screenshot](images/capdata.PNG)
 
 ### Structure
-The dataset contains 18 determining features after preprocessing representing various social and economic factors, with the target variable being the gun homicide rate per 100,000 population for each state. Features represent estimated percentages of populations falling under a certain socioeconomic criteria, as well as their raw value conterpart. For this project, only percentages will be used to better represent a population. Documentation of these features is provided here: https://www.atsdr.cdc.gov/place-health/media/pdfs/2024/10/SVI2022Documentation.pdf
+The dataset contains 18 features representing various socioeconomic factors, with the target variable being the gun homicide rate per 100,000 population for each state. Features represent estimated percentages of populations falling under a certain socioeconomic criteria, as well as their raw value conterpart. For this project, only percentages will be used to better represent a population. Documentation of these features is provided here: https://www.atsdr.cdc.gov/place-health/media/pdfs/2024/10/SVI2022Documentation.pdf
 
 ### Biases
 The dataset may contain biases related to data collection and reporting practices. For example, gun homicide data may be underreported in some areas, leading to potential inaccuracies.  Additionally, the homicide rate per 100k varies widely (example: 1.28 in New Hampshire vs. 20.99 in D.C.), suggesting potential skewness and data imbalance.
@@ -29,14 +29,16 @@ The following preprocessing steps were performed:
 
 -To elimiate the presence of multicolinearity, only the indicating features will be considered for for the models - hence, I omit the social vulerability ranking scores. 
 
+-Data was split between 20% testing and 80% training
+
 ### Baseline Performance
-Three models were trained and tuned to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) and R-squared (R^2) on a test set (20% of the data). The results are summarized below:
+Three models were trained and tuned using GridSearchCV to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) and R-squared on a test set. All of the following experiments will use the same parameter grid establshed in the baseline. The results of the baseline training are summarized below:
 
 ![screenshot](images/capbase.PNG)
 
 ## Experiments
 ### Scaling Features
-Features were scaled using MinMaxScaler. This reduced training times for GridSearchCV, especially for XGBoost. MSE for SVR improved, and it chose a linear kernel instead of a polynomial one.
+Features were scaled using MinMaxScaler. This reduced training times for all models, especially for XGBoost. MSE for SVR improved, and it chose a linear kernel instead of a polynomial one.
 
 ### Adding Features
 Polynomial features of 2nd and 3rd order were generated. For 2nd order polynomials, XGBoost performed the best. However, using 3rd order polynomials improved SVR's testing error, making it the best model. XGBoost showed signs of overfitting in this scenario.
