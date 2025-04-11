@@ -32,7 +32,7 @@ The following preprocessing steps were performed:
 -Data was split between 20% testing and 80% training
 
 ### Baseline Performance
-Three models were trained and tuned using GridSearchCV to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) and R-squared on a test set. All of the following experiments will use the same parameter grid establshed in the baseline. The results of the baseline training are summarized below:
+Three models were trained and tuned using GridSearchCV to establish a baseline performance metric: Linear Regression, Support Vector Regression (SVR), and XGBoost. The models were evaluated using Mean Squared Error (MSE) on a test set. All of the following experiments will use the same parameter grid establshed in the baseline. The results of the baseline training are summarized below:
 
 ![screenshot](images/capbase.PNG)
 
