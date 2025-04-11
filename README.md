@@ -27,7 +27,7 @@ The following preprocessing steps were performed:
 
 -Features starting with "RPL_" were separated as they represent different social vulnerability rankings scores (overall and for individual themes)
 
--To elimiate the presence of multicolinearity, only the indicating features will be considered for for the models - hence, I omit the social vulerability ranking scores. 
+-To elimiate the presence of multicollinearity, only the indicating features will be considered for for the models - hence, I omit the social vulerability ranking scores. 
 
 -Data was split between 20% testing and 80% training
 
@@ -54,7 +54,7 @@ For 3rd order polynomials SVR improved its testing error, outperforming XGBoost 
 PCA was applied to reduce dimensionality, set to capture 90% of variance with 6 components - 90% was found to consistently provide the best overall performance. This lowered MSE for XGBoost and Linear Regression, but raised it for SVR. This suggests PCA may have discarded important features crucial to the SVR model. This also supports the previous finding of how SVR excels in high-dimensional data.
 
 ### Preprocessing
-Two variants of the dataset were proposed - one containing the features used to calculate the final SVI values, and the other containing only the SVI values themselves (features with the "RPF" flags). It was found that the first dataset variant, the one with the indicating features, worked best for the models. Including the SVI index scores in the dataset introduces multicolinearity.
+Two variants of the dataset were proposed - one containing the features used to calculate the final SVI values, and the other containing only the SVI values themselves (features with the "RPF" flags). It was found that the first dataset variant, the one with the indicating features, worked best for the models. Including the SVI index scores in the dataset introduces multicollinearity.
 
 ### Noisy Indicators
 Synthetic noise (a random continuous and a random discrete categorical feature) was introduced to the dataset, assessing the robustness of the models to irrelevant features. It was found that SVR with a linear kernel achieved the lowest MSE out of all the experiments. Introducing noisy data appears to worsen the MSE of XGBoost by inducing overfitting, as seen by the significantly lowered training error but heighted testing error. On the otherhand, linear SVR increased in training error but lowered in in testing error, indicating a reduction in overfitting.
