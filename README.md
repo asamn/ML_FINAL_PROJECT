@@ -41,23 +41,30 @@ Three models were trained and tuned using GridSearchCV to establish a baseline p
 Features were scaled using MinMaxScaler. This reduced training times significantly for all models. All models maintained the same MSEs except for SVR, which improved its testing errors and reduced overfitting.
 
 ### Adding Features
-Polynomial features of 2nd and 3rd order were generated. For 2nd order polynomials, XGBoost performed the best. However, using 3rd order polynomials improved SVR's testing error, making it the best model. XGBoost showed signs of overfitting in this scenario.
+Polynomial features of 2nd and 3rd order were generated. The PolynomialFeatures function from SciKit was used to generate the features. 2nd order polynomials expanded the dataset to 152 features, while 3rd order expanded to 968.
+
+For 2nd order polynomials, XGBoost performed the best, though took the longest to train. Linear regression noticeably performed the worst, while SVR performed decently. This suggests how SVR is better suited for handling data with high-dimensions because of its ability to regularize through adjusting its margin parameter. 
+
+For 3rd order polynomials SVR improved its testing error, outperforming XGBoost - however, SVR still performs worse than XGBoost when using two degrees. XGBoost showed signs of overfitting in this scenario.
+
+![screenshot](images/cappoly2.PNG)
+![screenshot](images/cappoly3.PNG)
 
 ### Feature Transformations
-PCA was applied to reduce dimensionality, capturing 90% of variance with 6 components. This lowered MSE for SVR and Linear Regression, but raised it for XGBoost.
+PCA was applied to reduce dimensionality, set to capture 90% of variance with 6 components - 90% was found to consistently provide the best overall performance. This lowered MSE for XGBoost and Linear Regression, but raised it for SVR. This suggests PCA may have discarded important features crucial to the SVR model. This also supports the previous finding of how SVR excels in high-dimensional data.
 
 ### Preprocessing
-Two variants of the dataset were proposed - one containing the features used to calculate the final SVI values, and the other containing only the SVI values themselves (features with the "_RPF" flags). It was found that the first dataset variant,
-the one with the features, worked best for the models.
+Two variants of the dataset were proposed - one containing the features used to calculate the final SVI values, and the other containing only the SVI values themselves (features with the "RPF" flags). It was found that the first dataset variant, the one with the indicating features, worked best for the models. Including the SVI index scores in the dataset introduces multicolinearity.
 
 ### Noisy Indicators
-Synthetic noise (a random continuous and a random discrete categorical feature) was introduced. This experiment assessed the robustness of the models to irrelevant features. The impact on model performance varied.
+Synthetic noise (a random continuous and a random discrete categorical feature) was introduced to the dataset, assessing the robustness of the models to irrelevant features. It was found that SVR with a linear kernal achieved the lowest MSE out of all the experiments. Introducing noisy data appears to worsen the MSE of XGBoost by inducing overfitting, as seen by the significantly lowered training error but heighted testing error. On the otherhand, linear SVR increased in training error but lowered in in testing error, indicating a reduction in overfitting.
+
+This implies that noisy data may reduce overfitting for linear based models, but increase overfitting in tree-based boosting models like XGBoost - especially in the case of small datasets such as the one used in this project. Adding noise can artificially increase the diversity of the data, providing the model with more variations to learn from and potentially improving generalization.
 
 ## Results and Discussion
 ![screenshot](images/captimes.PNG)
 
 ![screenshot](images/capresult.PNG)
 ## Recommended Model
-Based on the experiment results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernel on MinMax scaled features. This model achieved the lowest Test MSE (5.34) compared to other model variants and effectively captured the general pattern in the data without excessive overfitting. This suggests that the dataset appears to have a linear relationship between features and the target variable. 
-
+Based on the experiment results, the recommended model for predicting U.S. gun homicide rates is SVR with a linear kernal on noisy and scaled features achieved the lowest MSE compared to other model variants - therefore, this is my recomended model for the given dataset. This model effectively captured the general pattern within the dataset without excessive overfitting, leading to improved predictive performance.
 
