@@ -68,7 +68,7 @@ It appears that SVR with a linear kernel on noisy features achieved the lowest t
 
 If more time, and patience, were available, a more extensive GridSearch over a wider range of values could potentially yield better results, especially for XGBoost which tended to overfit the relatively small data. Using techniques like RandomizedSearchCV or Bayesian Optimization would alternatively allow for a more efficient exploration of the hyperparameter space.
 
-It was also apparent that overfitting was a prevalent issue within the models, due to the small sample size (51 samples) in the dataset. To improve overfitting issues, it may be better to incorporate more data from additional years, or elect to analyze county data.
+It was also apparent that overfitting was a prevalent issue among the models due to the small sample size (51 samples) in the dataset. To improve overfitting issues, it may be better to incorporate more data from additional years, or elect to analyze county data.
 
 Experimenting with other models, particularly Ensemble Methods could potentially improve overall accuracy and stability.
 
